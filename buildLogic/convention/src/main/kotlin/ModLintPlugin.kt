@@ -34,9 +34,10 @@ class ModLintPlugin : Plugin<Project> {
 
             extensions.configure<QuiltLicenserGradleExtension> {
                 rule(files(target.rootProject.file("codeformat/HEADER")))
+                // checks from srcDir root not project root, so cant exclude generated dir directly.
                 include("**/*.kt")
                 include("**/*.java")
-                exclude("**/build/generated/ksp/main/kotlin/**/*.kt")
+                exclude("**/generated/**/*.kt")
             }
         }
     }

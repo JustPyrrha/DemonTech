@@ -16,6 +16,8 @@
 
 package gay.pyrrha.demontech.block.entity
 
+import gay.pyrrha.block.generated.ThermalGeneratorBlockEntitySync
+import gay.pyrrha.block.generated.ThermalGeneratorBlockEntitySyncData
 import gay.pyrrha.sync.Sync
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity

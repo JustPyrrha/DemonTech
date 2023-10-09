@@ -67,6 +67,7 @@ private val nbtConverters: List<NbtConverter<*>> = listOf(
 public class SyncProcessor(
     private val codeGenerator: CodeGenerator,
     private val logger: KSPLogger,
+    private val options: Map<String, String>
 ) : SymbolProcessor {
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
@@ -83,8 +84,7 @@ public class SyncProcessor(
         @OptIn(KspExperimental::class)
         @Suppress("LongMethod")
         override fun visitClassDeclaration(classDeclaration: KSClassDeclaration, data: Unit) {
-            logger.info("Visiting ${classDeclaration.qualifiedName!!.asString()}")
-            val packageName = classDeclaration.containingFile!!.packageName.asString()
+            val packageName = findPackageName(options, classDeclaration)
             val className = "${classDeclaration.simpleName.asString()}Sync"
             val syncFields: MutableMap<KSPropertyDeclaration, NbtConverter<*>> = mutableMapOf()
             classDeclaration.getAllProperties()
@@ -176,9 +176,18 @@ public class SyncProcessor(
         }
         throw MissingConverterException("Missing NbtConverter for ${type.declaration.qualifiedName!!.asString()}. ")
     }
+
+    private fun findPackageName(options: Map<String, String>, classDeclaration: KSClassDeclaration): String {
+        val packageOption = "sync.output-package"
+        return if(options.containsKey(packageOption) && !options[packageOption].isNullOrEmpty()) {
+            options[packageOption]!!
+        } else {
+            classDeclaration.containingFile!!.packageName.asString()
+        }
+    }
 }
 
 public class SyncProcessorProvider : SymbolProcessorProvider {
     override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor =
-        SyncProcessor(environment.codeGenerator, environment.logger)
+        SyncProcessor(environment.codeGenerator, environment.logger, environment.options)
 }

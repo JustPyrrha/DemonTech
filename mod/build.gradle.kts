@@ -31,6 +31,10 @@ dependencies {
     ksp(projects.libraries.sync) { targetConfiguration = "namedElements" }
 }
 
+ksp {
+    arg("sync.output-package", "gay.pyrrha.block.generated")
+}
+
 loom {
     runConfigs.configureEach {
         isIdeConfigGenerated = true
