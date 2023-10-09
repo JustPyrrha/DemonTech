@@ -18,8 +18,14 @@ package gay.pyrrha.datagenhelper
 
 import net.minecraft.block.Block
 import net.minecraft.data.client.model.BlockStateModelGenerator
+import net.minecraft.data.client.model.BlockStateVariant
+import net.minecraft.data.client.model.BlockStateVariantMap
 import net.minecraft.data.client.model.Texture
 import net.minecraft.data.client.model.TextureKey
+import net.minecraft.data.client.model.TexturedModel
+import net.minecraft.data.client.model.VariantSettings
+import net.minecraft.data.client.model.VariantsBlockStateSupplier
+import net.minecraft.state.property.IntProperty
 
 public fun BlockStateModelGenerator.registerHorizontalRotatable(block: Block) {
     registerNorthDefaultHorizontalRotatable(
@@ -32,3 +38,37 @@ public fun BlockStateModelGenerator.registerHorizontalRotatable(block: Block) {
             .put(TextureKey.BOTTOM, Texture.getSubId(block, "_bottom"))
     )
 }
+
+public fun BlockStateModelGenerator.registerHorizontalRotatableWithChargeLevel(
+    block: Block,
+    chargeProperty: IntProperty
+) {
+    val stateSupplier = VariantsBlockStateSupplier.create(block)
+    val chargeStates = BlockStateVariantMap.create(chargeProperty)
+
+    for (level in chargeProperty.min()..chargeProperty.max()) {
+        val suffix = "_$level"
+        val textureId = Texture.getSubId(block, "_front$suffix")
+        val modelId = TexturedModel.ORIENTABLE.get(block).texture {
+            it.put(TextureKey.FRONT, textureId)
+        }.upload(block, suffix, this.modelCollector)
+
+        chargeStates.register(
+            level,
+            BlockStateVariant.create()
+                .put(
+                    VariantSettings.MODEL,
+                    modelId
+                )
+            )
+    }
+
+    stateSupplier.coordinate(chargeStates)
+    stateSupplier.coordinate(BlockStateModelGenerator.createNorthDefaultHorizontalRotationStates())
+
+    this.blockStateCollector.accept(stateSupplier)
+}
+
+
+private fun IntProperty.min() = this.values.min()
+private fun IntProperty.max() = this.values.max()

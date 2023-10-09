@@ -18,6 +18,7 @@ package gay.pyrrha.demontech.block.entity
 
 import gay.pyrrha.block.generated.ThermalGeneratorBlockEntitySync
 import gay.pyrrha.block.generated.ThermalGeneratorBlockEntitySyncData
+import gay.pyrrha.demontech.block.ModProperties
 import gay.pyrrha.sync.Sync
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
@@ -25,6 +26,7 @@ import net.minecraft.nbt.NbtCompound
 import net.minecraft.network.listener.ClientPlayPacketListener
 import net.minecraft.network.packet.Packet
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket
+import net.minecraft.state.property.IntProperty
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
@@ -71,9 +73,36 @@ class ThermalGeneratorBlockEntity(
     }
 
     companion object {
-        fun tick(world: World, entity: ThermalGeneratorBlockEntity) {
-            if (!world.isClient && entity.active) {
-                entity.energyBuffer++
+        private const val MAX_ENERGY = 600
+
+        @Suppress("CyclomaticComplexMethod") // scored 16, max 15
+        fun tick(world: World, pos: BlockPos, state: BlockState, entity: ThermalGeneratorBlockEntity) {
+            if (!world.isClient) {
+                if(entity.active && entity.energyBuffer < MAX_ENERGY) {
+                    entity.energyBuffer++
+                }
+
+                @Suppress("MagicNumber")
+                when ((entity.energyBuffer / MAX_ENERGY) * 10) {
+                    in 0..<1 -> updateIfNot(0, ModProperties.CHARGE_LEVEL, state, world, pos)
+                    in 1..<2 -> updateIfNot(1, ModProperties.CHARGE_LEVEL, state, world, pos)
+                    in 2..<3 -> updateIfNot(2, ModProperties.CHARGE_LEVEL, state, world, pos)
+                    in 3..<4 -> updateIfNot(3, ModProperties.CHARGE_LEVEL, state, world, pos)
+                    in 4..<5 -> updateIfNot(4, ModProperties.CHARGE_LEVEL, state, world, pos)
+                    in 5..<6 -> updateIfNot(5, ModProperties.CHARGE_LEVEL, state, world, pos)
+                    in 6..<7 -> updateIfNot(6, ModProperties.CHARGE_LEVEL, state, world, pos)
+                    in 7..<8 -> updateIfNot(7, ModProperties.CHARGE_LEVEL, state, world, pos)
+                    in 8..<9 -> updateIfNot(8, ModProperties.CHARGE_LEVEL, state, world, pos)
+                    in 9..<10 -> updateIfNot(9, ModProperties.CHARGE_LEVEL, state, world, pos)
+                    10 -> updateIfNot(10, ModProperties.CHARGE_LEVEL, state, world, pos)
+                    else -> {}
+                }
+            }
+        }
+
+        private fun updateIfNot(value: Int, prop: IntProperty, state: BlockState, world: World, pos: BlockPos) {
+            if(state.get(prop) != value) {
+                world.setBlockState(pos, state.with(prop, value))
             }
         }
     }

@@ -16,8 +16,9 @@
 
 package gay.pyrrha.demontech.datagen.provider
 
-import gay.pyrrha.datagenhelper.registerHorizontalRotatable
+import gay.pyrrha.datagenhelper.registerHorizontalRotatableWithChargeLevel
 import gay.pyrrha.demontech.block.ModBlocks
+import gay.pyrrha.demontech.block.ModProperties
 import gay.pyrrha.demontech.item.ModItems
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider
@@ -27,7 +28,7 @@ import net.minecraft.data.client.model.Models
 
 class ModModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
     override fun generateBlockStateModels(generator: BlockStateModelGenerator) {
-        generator.registerHorizontalRotatable(ModBlocks.THERMAL_GENERATOR)
+        generator.registerHorizontalRotatableWithChargeLevel(ModBlocks.THERMAL_GENERATOR, ModProperties.CHARGE_LEVEL)
     }
 
     override fun generateItemModels(generator: ItemModelGenerator) {

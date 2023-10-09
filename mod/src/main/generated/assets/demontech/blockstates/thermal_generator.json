@@ -1,18 +1,168 @@
 {
   "variants": {
-    "facing=east": {
-      "model": "demontech:block/thermal_generator",
+    "charge=0,facing=east": {
+      "model": "demontech:block/thermal_generator_0",
       "y": 90
     },
-    "facing=north": {
-      "model": "demontech:block/thermal_generator"
+    "charge=0,facing=north": {
+      "model": "demontech:block/thermal_generator_0"
     },
-    "facing=south": {
-      "model": "demontech:block/thermal_generator",
+    "charge=0,facing=south": {
+      "model": "demontech:block/thermal_generator_0",
       "y": 180
     },
-    "facing=west": {
-      "model": "demontech:block/thermal_generator",
+    "charge=0,facing=west": {
+      "model": "demontech:block/thermal_generator_0",
+      "y": 270
+    },
+    "charge=1,facing=east": {
+      "model": "demontech:block/thermal_generator_1",
+      "y": 90
+    },
+    "charge=1,facing=north": {
+      "model": "demontech:block/thermal_generator_1"
+    },
+    "charge=1,facing=south": {
+      "model": "demontech:block/thermal_generator_1",
+      "y": 180
+    },
+    "charge=1,facing=west": {
+      "model": "demontech:block/thermal_generator_1",
+      "y": 270
+    },
+    "charge=10,facing=east": {
+      "model": "demontech:block/thermal_generator_10",
+      "y": 90
+    },
+    "charge=10,facing=north": {
+      "model": "demontech:block/thermal_generator_10"
+    },
+    "charge=10,facing=south": {
+      "model": "demontech:block/thermal_generator_10",
+      "y": 180
+    },
+    "charge=10,facing=west": {
+      "model": "demontech:block/thermal_generator_10",
+      "y": 270
+    },
+    "charge=2,facing=east": {
+      "model": "demontech:block/thermal_generator_2",
+      "y": 90
+    },
+    "charge=2,facing=north": {
+      "model": "demontech:block/thermal_generator_2"
+    },
+    "charge=2,facing=south": {
+      "model": "demontech:block/thermal_generator_2",
+      "y": 180
+    },
+    "charge=2,facing=west": {
+      "model": "demontech:block/thermal_generator_2",
+      "y": 270
+    },
+    "charge=3,facing=east": {
+      "model": "demontech:block/thermal_generator_3",
+      "y": 90
+    },
+    "charge=3,facing=north": {
+      "model": "demontech:block/thermal_generator_3"
+    },
+    "charge=3,facing=south": {
+      "model": "demontech:block/thermal_generator_3",
+      "y": 180
+    },
+    "charge=3,facing=west": {
+      "model": "demontech:block/thermal_generator_3",
+      "y": 270
+    },
+    "charge=4,facing=east": {
+      "model": "demontech:block/thermal_generator_4",
+      "y": 90
+    },
+    "charge=4,facing=north": {
+      "model": "demontech:block/thermal_generator_4"
+    },
+    "charge=4,facing=south": {
+      "model": "demontech:block/thermal_generator_4",
+      "y": 180
+    },
+    "charge=4,facing=west": {
+      "model": "demontech:block/thermal_generator_4",
+      "y": 270
+    },
+    "charge=5,facing=east": {
+      "model": "demontech:block/thermal_generator_5",
+      "y": 90
+    },
+    "charge=5,facing=north": {
+      "model": "demontech:block/thermal_generator_5"
+    },
+    "charge=5,facing=south": {
+      "model": "demontech:block/thermal_generator_5",
+      "y": 180
+    },
+    "charge=5,facing=west": {
+      "model": "demontech:block/thermal_generator_5",
+      "y": 270
+    },
+    "charge=6,facing=east": {
+      "model": "demontech:block/thermal_generator_6",
+      "y": 90
+    },
+    "charge=6,facing=north": {
+      "model": "demontech:block/thermal_generator_6"
+    },
+    "charge=6,facing=south": {
+      "model": "demontech:block/thermal_generator_6",
+      "y": 180
+    },
+    "charge=6,facing=west": {
+      "model": "demontech:block/thermal_generator_6",
+      "y": 270
+    },
+    "charge=7,facing=east": {
+      "model": "demontech:block/thermal_generator_7",
+      "y": 90
+    },
+    "charge=7,facing=north": {
+      "model": "demontech:block/thermal_generator_7"
+    },
+    "charge=7,facing=south": {
+      "model": "demontech:block/thermal_generator_7",
+      "y": 180
+    },
+    "charge=7,facing=west": {
+      "model": "demontech:block/thermal_generator_7",
+      "y": 270
+    },
+    "charge=8,facing=east": {
+      "model": "demontech:block/thermal_generator_8",
+      "y": 90
+    },
+    "charge=8,facing=north": {
+      "model": "demontech:block/thermal_generator_8"
+    },
+    "charge=8,facing=south": {
+      "model": "demontech:block/thermal_generator_8",
+      "y": 180
+    },
+    "charge=8,facing=west": {
+      "model": "demontech:block/thermal_generator_8",
+      "y": 270
+    },
+    "charge=9,facing=east": {
+      "model": "demontech:block/thermal_generator_9",
+      "y": 90
+    },
+    "charge=9,facing=north": {
+      "model": "demontech:block/thermal_generator_9"
+    },
+    "charge=9,facing=south": {
+      "model": "demontech:block/thermal_generator_9",
+      "y": 180
+    },
+    "charge=9,facing=west": {
+      "model": "demontech:block/thermal_generator_9",
       "y": 270
     }
   }

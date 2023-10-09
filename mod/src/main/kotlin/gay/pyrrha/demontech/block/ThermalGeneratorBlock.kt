@@ -31,6 +31,7 @@ import net.minecraft.item.ItemPlacementContext
 import net.minecraft.item.ItemStack
 import net.minecraft.state.StateManager
 import net.minecraft.state.property.DirectionProperty
+import net.minecraft.state.property.IntProperty
 import net.minecraft.state.property.Properties
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
@@ -43,19 +44,26 @@ import net.minecraft.world.World
  */
 class ThermalGeneratorBlock(settings: Settings) : BlockWithEntity(settings) {
     init {
-        defaultState = stateManager.defaultState.with(FACING, Direction.NORTH)
+        defaultState = stateManager.defaultState
+            .with(FACING, Direction.NORTH)
+            .with(CHARGE, 0)
     }
 
     companion object {
         val FACING: DirectionProperty = Properties.HORIZONTAL_FACING
+        val CHARGE: IntProperty = ModProperties.CHARGE_LEVEL
     }
 
     override fun appendProperties(builder: StateManager.Builder<Block, BlockState>) {
-        builder.add(FACING)
+        builder
+            .add(FACING)
+            .add(CHARGE)
     }
 
     override fun getPlacementState(ctx: ItemPlacementContext): BlockState {
-        return stateManager.defaultState.with(FACING, ctx.player?.horizontalFacing?.opposite ?: Direction.NORTH)
+        return stateManager.defaultState
+            .with(FACING, ctx.player?.horizontalFacing?.opposite ?: Direction.NORTH)
+            .with(CHARGE, 0)
     }
 
     @Deprecated("Deprecated in Java")
@@ -100,8 +108,6 @@ class ThermalGeneratorBlock(settings: Settings) : BlockWithEntity(settings) {
         state: BlockState,
         type: BlockEntityType<T>
     ): BlockEntityTicker<T>? {
-        return checkType(type, ModBlockEntities.THERMAL_GENERATOR) { world, _, _, entity ->
-            ThermalGeneratorBlockEntity.tick(world, entity)
-        }
+        return checkType(type, ModBlockEntities.THERMAL_GENERATOR, ThermalGeneratorBlockEntity::tick)
     }
 }
