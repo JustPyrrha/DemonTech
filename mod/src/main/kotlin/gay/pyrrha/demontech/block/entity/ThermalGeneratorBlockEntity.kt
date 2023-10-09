@@ -73,7 +73,7 @@ class ThermalGeneratorBlockEntity(
     }
 
     companion object {
-        private const val MAX_ENERGY = 600
+        private const val MAX_ENERGY = 600.0
 
         @Suppress("CyclomaticComplexMethod") // scored 16, max 15
         fun tick(world: World, pos: BlockPos, state: BlockState, entity: ThermalGeneratorBlockEntity) {
@@ -83,18 +83,18 @@ class ThermalGeneratorBlockEntity(
                 }
 
                 @Suppress("MagicNumber")
-                when ((entity.energyBuffer / MAX_ENERGY) * 10) {
-                    in 0..<1 -> updateIfNot(0, ModProperties.CHARGE_LEVEL, state, world, pos)
-                    in 1..<2 -> updateIfNot(1, ModProperties.CHARGE_LEVEL, state, world, pos)
-                    in 2..<3 -> updateIfNot(2, ModProperties.CHARGE_LEVEL, state, world, pos)
-                    in 3..<4 -> updateIfNot(3, ModProperties.CHARGE_LEVEL, state, world, pos)
-                    in 4..<5 -> updateIfNot(4, ModProperties.CHARGE_LEVEL, state, world, pos)
-                    in 5..<6 -> updateIfNot(5, ModProperties.CHARGE_LEVEL, state, world, pos)
-                    in 6..<7 -> updateIfNot(6, ModProperties.CHARGE_LEVEL, state, world, pos)
-                    in 7..<8 -> updateIfNot(7, ModProperties.CHARGE_LEVEL, state, world, pos)
-                    in 8..<9 -> updateIfNot(8, ModProperties.CHARGE_LEVEL, state, world, pos)
-                    in 9..<10 -> updateIfNot(9, ModProperties.CHARGE_LEVEL, state, world, pos)
-                    10 -> updateIfNot(10, ModProperties.CHARGE_LEVEL, state, world, pos)
+                when ((entity.energyBuffer / MAX_ENERGY)) {
+                    in 0.0..<0.1 -> updateIfNot(0, ModProperties.CHARGE_LEVEL, state, world, pos)
+                    in 0.1..<0.2 -> updateIfNot(1, ModProperties.CHARGE_LEVEL, state, world, pos)
+                    in 0.2..<0.3 -> updateIfNot(2, ModProperties.CHARGE_LEVEL, state, world, pos)
+                    in 0.3..<0.4 -> updateIfNot(3, ModProperties.CHARGE_LEVEL, state, world, pos)
+                    in 0.4..<0.5 -> updateIfNot(4, ModProperties.CHARGE_LEVEL, state, world, pos)
+                    in 0.5..<0.6 -> updateIfNot(5, ModProperties.CHARGE_LEVEL, state, world, pos)
+                    in 0.6..<0.7 -> updateIfNot(6, ModProperties.CHARGE_LEVEL, state, world, pos)
+                    in 0.7..<0.8 -> updateIfNot(7, ModProperties.CHARGE_LEVEL, state, world, pos)
+                    in 0.8..<0.9 -> updateIfNot(8, ModProperties.CHARGE_LEVEL, state, world, pos)
+                    in 0.9..<1.0 -> updateIfNot(9, ModProperties.CHARGE_LEVEL, state, world, pos)
+                    1.0 -> updateIfNot(10, ModProperties.CHARGE_LEVEL, state, world, pos)
                     else -> {}
                 }
             }
