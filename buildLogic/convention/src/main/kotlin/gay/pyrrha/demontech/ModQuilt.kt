@@ -26,6 +26,8 @@ internal fun Project.configureQuilt() {
         apply("org.quiltmc.loom")
     }
 
+    configureKotlin()
+
     extensions.configure<LoomGradleExtensionAPI> {
         runtimeOnlyLog4j.set(true)
     }
