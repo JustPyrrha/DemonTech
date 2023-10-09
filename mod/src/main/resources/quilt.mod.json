@@ -10,6 +10,7 @@
       "contributors": {
         "JustPyrrha": "Owner"
       },
+      "icon": "assets/demontech/textures/item/adaptive_thermal_pad.png",
       "license": {
         "id": "Apache-2.0",
         "name": "Apache License 2.0",
