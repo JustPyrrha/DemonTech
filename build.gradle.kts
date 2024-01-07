@@ -5,8 +5,8 @@ plugins {
     alias(libs.plugins.kotlin) apply false
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.minotaur) apply false
-    alias(libs.plugins.quilt.licenser) apply false
     alias(libs.plugins.quilt.loom) apply false
+    alias(libs.plugins.yumi.licenser) apply false
 }
 
 gitHooks {

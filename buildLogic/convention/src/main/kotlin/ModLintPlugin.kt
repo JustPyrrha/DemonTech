@@ -14,25 +14,25 @@
  * limitations under the License.
  */
 
+import dev.yumi.gradle.licenser.YumiLicenserGradleExtension
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
-import org.quiltmc.gradle.licenser.extension.QuiltLicenserGradleExtension
 
 class ModLintPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
                 apply("io.gitlab.arturbosch.detekt")
-                apply("org.quiltmc.gradle.licenser")
+                apply("dev.yumi.gradle.licenser")
             }
 
             extensions.configure<DetektExtension> {
                 config.setFrom(rootProject.file("codeformat/detekt.yml"))
             }
 
-            extensions.configure<QuiltLicenserGradleExtension> {
+            extensions.configure<YumiLicenserGradleExtension> {
                 rule(files(target.rootProject.file("codeformat/HEADER")))
                 // checks from srcDir root not project root, so cant exclude generated dir directly.
                 include("**/*.kt")

@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     `kotlin-dsl`
     alias(libs.plugins.detekt)
-    alias(libs.plugins.quilt.licenser)
+    alias(libs.plugins.yumi.licenser)
 }
 
 group = "gay.pyrrha.demontech.buildlogic"
@@ -27,8 +27,8 @@ dependencies {
     compileOnly(libs.detekt.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.minotaur.gradlePlugin)
-    compileOnly(libs.quilt.licenserGradlePlugin)
     compileOnly(libs.quilt.loomGradlePlugin)
+    compileOnly(libs.yumi.licenserGradlePlugin)
 }
 
 repositories {

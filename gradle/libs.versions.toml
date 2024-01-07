@@ -11,13 +11,13 @@ ksp = "1.9.10-1.0.13"
 minecraft = "1.20.1"
 minotaur = "2.8.4"
 quiltKotlinLibraries = "2.1.3+kt.1.9.10+flk.1.10.10"
-quiltLicenser = "2.0.1"
 quiltLoader = "0.21.0"
 quiltLoom = "1.4.1"
 quiltMappings = "1.20.1+build.23"
 quiltMappingsClassifier = "intermediary-v2"
 quiltStandardLibraries = "6.1.2+1.20.1"
 quiltedFabricApi = "7.4.0+0.90.0-1.20.1"
+yumiLicenser = "1.0.+"
 
 [libraries]
 assertk = { group = "com.willowtreeapps.assertk", name = "assertk", version.ref = "assertk" }
@@ -38,8 +38,8 @@ changelog-gradlePlugin = { group = "org.jetbrains.intellij.plugins", name = "gra
 detekt-gradlePlugin = { group = "io.gitlab.arturbosch.detekt", name = "io.gitlab.arturbosch.detekt.gradle.plugin", version.ref = "detekt" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 minotaur-gradlePlugin = { group = "com.modrinth.minotaur", name = "com.modrinth.minotaur.gradle.plugin", version.ref = "minotaur" }
-quilt-licenserGradlePlugin = { group = "org.quiltmc.gradle.licenser", name = "org.quiltmc.gradle.licenser.gradle.plugin", version.ref = "quiltLicenser" }
 quilt-loomGradlePlugin = { group = "org.quiltmc", name = "loom", version.ref = "quiltLoom" }
+yumi-licenserGradlePlugin = { group = "dev.yumi.gradle.licenser", name = "dev.yumi.gradle.licenser.gradle.plugin", version.ref = "yumiLicenser" }
 
 [plugins]
 changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }
@@ -49,5 +49,5 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 minotaur = { id = "com.modrinth.minotaur", version.ref = "minotaur" }
-quilt-licenser = { id = "org.quiltmc.gradle.licenser", version.ref = "quiltLicenser" }
 quilt-loom = { id = "org.quiltmc.loom", version.ref = "quiltLoom" }
+yumi-licenser = { id = "dev.yumi.gradle.licenser", version.ref = "yumiLicenser" }
