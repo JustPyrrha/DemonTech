@@ -16,15 +16,14 @@
 
 package converter
 
-import assertk.assertThat
-import assertk.assertions.isEqualTo
-import assertk.assertions.isTrue
+import gay.pyrrha.sync.NbtTypeIds
 import gay.pyrrha.sync.converter.LongNbtConverter
 import net.minecraft.nbt.NbtCompound
-import net.minecraft.nbt.NbtLong
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class LongNbtConverterTests {
     @Test
@@ -36,7 +35,7 @@ class LongNbtConverterTests {
         val isValid = LongNbtConverter.validFor(kClass)
 
         // Then
-        assertThat(isValid).isTrue()
+        assertTrue(isValid)
     }
 
     @ParameterizedTest
@@ -51,7 +50,7 @@ class LongNbtConverterTests {
         val testLong = LongNbtConverter.read(compound, name)
 
         // Then
-        assertThat(testLong).isEqualTo(value)
+        assertEquals(value, testLong)
     }
 
     @ParameterizedTest
@@ -65,7 +64,7 @@ class LongNbtConverterTests {
         LongNbtConverter.write(compound, name, value)
 
         // Then
-        assertThat(compound.contains(name, NbtLong.LONG_TYPE.toInt())).isTrue()
-        assertThat(compound.getLong(name)).isEqualTo(value)
+        assertTrue(compound.contains(name, NbtTypeIds.LONG))
+        assertEquals(value, compound.getLong(name))
     }
 }

@@ -16,15 +16,14 @@
 
 package converter
 
-import assertk.assertThat
-import assertk.assertions.isEqualTo
-import assertk.assertions.isTrue
+import gay.pyrrha.sync.NbtTypeIds
 import gay.pyrrha.sync.converter.StringNbtConverter
 import net.minecraft.nbt.NbtCompound
-import net.minecraft.nbt.NbtString
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class StringNbtConverterTests {
     @Test
@@ -36,7 +35,7 @@ class StringNbtConverterTests {
         val isValid = StringNbtConverter.validFor(kClass)
 
         // Then
-        assertThat(isValid).isTrue()
+        assertTrue(isValid)
     }
 
     @ParameterizedTest
@@ -51,7 +50,7 @@ class StringNbtConverterTests {
         val testString = StringNbtConverter.read(compound, name)
 
         // Then
-        assertThat(testString).isEqualTo(value)
+        assertEquals(value, testString)
     }
 
     @ParameterizedTest
@@ -65,7 +64,7 @@ class StringNbtConverterTests {
         StringNbtConverter.write(compound, name, value)
 
         // Then
-        assertThat(compound.contains(name, NbtString.STRING_TYPE.toInt())).isTrue()
-        assertThat(compound.getString(name)).isEqualTo(value)
+        assertTrue(compound.contains(name, NbtTypeIds.STRING))
+        assertEquals(value, compound.getString(name))
     }
 }

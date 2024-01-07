@@ -16,13 +16,12 @@
 
 package converter
 
-import assertk.assertThat
-import assertk.assertions.isEqualTo
-import assertk.assertions.isTrue
+import gay.pyrrha.sync.NbtTypeIds
 import gay.pyrrha.sync.converter.ByteArrayNbtConverter
-import net.minecraft.nbt.NbtByteArray
 import net.minecraft.nbt.NbtCompound
 import org.junit.jupiter.api.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class ByteArrayNbtConverterTests {
 
@@ -35,7 +34,7 @@ class ByteArrayNbtConverterTests {
         val isValid = ByteArrayNbtConverter.validFor(name)
 
         // Then
-        assertThat(isValid).isTrue()
+        assertTrue(isValid)
     }
 
     @Test
@@ -50,7 +49,7 @@ class ByteArrayNbtConverterTests {
         val testByteArray = ByteArrayNbtConverter.read(compound, name)
 
         // Then
-        assertThat(testByteArray).isEqualTo(value)
+        assertEquals(value, testByteArray)
     }
 
     @Test
@@ -64,7 +63,7 @@ class ByteArrayNbtConverterTests {
         ByteArrayNbtConverter.write(compound, name, value)
 
         // Then
-        assertThat(compound.contains(name, NbtByteArray.BYTE_ARRAY_TYPE.toInt())).isTrue()
-        assertThat(compound.getByteArray(name)).isEqualTo(value)
+        assertTrue(compound.contains(name, NbtTypeIds.BYTE_ARRAY))
+        assertEquals(value, compound.getByteArray(name))
     }
 }

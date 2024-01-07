@@ -31,7 +31,6 @@ class ModTestingPlugin : Plugin<Project> {
 
             dependencies {
                 "testImplementation"(kotlin("test"))
-                "testImplementation"(libs.findLibrary("assertk").get())
                 "testImplementation"(libs.findLibrary("junit.params").get())
             }
         }

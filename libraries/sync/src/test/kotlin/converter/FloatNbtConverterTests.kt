@@ -16,15 +16,14 @@
 
 package converter
 
-import assertk.assertThat
-import assertk.assertions.isEqualTo
-import assertk.assertions.isTrue
+import gay.pyrrha.sync.NbtTypeIds
 import gay.pyrrha.sync.converter.FloatNbtConverter
 import net.minecraft.nbt.NbtCompound
-import net.minecraft.nbt.NbtFloat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class FloatNbtConverterTests {
 
@@ -37,7 +36,7 @@ class FloatNbtConverterTests {
         val isValid = FloatNbtConverter.validFor(name)
 
         // Then
-        assertThat(isValid).isTrue()
+        assertTrue(isValid)
     }
 
     @ParameterizedTest
@@ -52,7 +51,7 @@ class FloatNbtConverterTests {
         val testFloat = FloatNbtConverter.read(compound, name)
 
         // Then
-        assertThat(testFloat).isEqualTo(value)
+        assertEquals(value, testFloat)
     }
 
     @ParameterizedTest
@@ -66,7 +65,7 @@ class FloatNbtConverterTests {
         FloatNbtConverter.write(compound, name, value)
 
         // Then
-        assertThat(compound.contains(name, NbtFloat.FLOAT_TYPE.toInt())).isTrue()
-        assertThat(compound.getFloat(name)).isEqualTo(value)
+        assertTrue(compound.contains(name, NbtTypeIds.FLOAT))
+        assertEquals(value, compound.getFloat(name))
     }
 }
