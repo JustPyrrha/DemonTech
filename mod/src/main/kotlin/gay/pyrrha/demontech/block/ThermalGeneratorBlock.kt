@@ -42,6 +42,7 @@ import net.minecraft.world.World
  * Generates 1 Unit/tick
  * Stores 600 Units (Output Only)
  */
+@Suppress("OVERRIDE_DEPRECATION")
 class ThermalGeneratorBlock(settings: Settings) : BlockWithEntity(settings) {
     init {
         defaultState = stateManager.defaultState
@@ -66,7 +67,6 @@ class ThermalGeneratorBlock(settings: Settings) : BlockWithEntity(settings) {
             .with(CHARGE, 0)
     }
 
-    @Deprecated("Deprecated in Java")
     override fun getRenderType(state: BlockState): BlockRenderType = BlockRenderType.MODEL
 
     override fun createBlockEntity(pos: BlockPos, state: BlockState): BlockEntity =
@@ -86,7 +86,6 @@ class ThermalGeneratorBlock(settings: Settings) : BlockWithEntity(settings) {
         }
     }
 
-    @Deprecated("Deprecated in Java")
     override fun neighborUpdate(
         state: BlockState,
         world: World,
@@ -95,6 +94,7 @@ class ThermalGeneratorBlock(settings: Settings) : BlockWithEntity(settings) {
         fromPos: BlockPos,
         notify: Boolean
     ) {
+        @Suppress("DEPRECATION")
         super.neighborUpdate(state, world, pos, block, fromPos, notify)
         if(!world.isClient && fromPos == pos.down()) {
             val fluidState = world.getBlockState(fromPos).fluidState
